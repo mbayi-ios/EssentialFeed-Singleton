@@ -13,7 +13,7 @@ import UIKit
 
 struct LoggedInUser {}
 
-final class ApiClient {
+class ApiClient {
     static let instance  = ApiClient()
     
     static func getInstance() -> ApiClient {
@@ -26,8 +26,17 @@ final class ApiClient {
 
 let client = ApiClient.instance
 
+// this allow you to test
+class MockApiClient: ApiClient {
+    
+}
+
 
 class LoginViewController: UIViewController {
+    
+    // introducing property injection
+    var api = ApiClient.instance
+    
     func didTapLoginButton() {
         ApiClient.instance.login() { user in
             // show next screen
