@@ -29,3 +29,17 @@ Note: most application stop at solution 2 - where they use extension. With time 
 
 ApiClient is just a detail - what is important to the business is not ApiClient implementation and Api requests
 Best method is to have contained logic in Modules and Details(ApiClient) depends on the features
+
+## Solution - 4
+<img src="https://github.com/mbayi-ios/EssentialFeed-Singleton/assets/91916741/47462132-62ed-4975-8893-d5ff645dd79f" width = "75%" />
+
+ NOTE: 3
+And to do so - we need to introduce protocols or closures or any type of for the modules.
+ For example,
+ - Login Module - it needs a function or a type that implements a function that talk to an API
+ - Feed Module - will need a function to load the feed
+ - Followers Module - Will need a function to load the followers
+ thats all they need - it doesnt need to know where they come from
+
+ i.e when you have a concrete type dependency i.e the Login module directly reference the ApiClient, we depend on ApiClient, we need to know how to locate the instance(ApiClient.shared) then now we invoke the function that we want. But all we want is a function.
+ why dont we just depend on a function or protocol that implements the function.
