@@ -88,9 +88,9 @@ class LoginViewController: UIViewController {
 
 struct FeedItem {}
 
-// this doesnt need to be a viewController; it can be viewModel
+// this doesnt need to be a viewController; it can be a Service
 
-class FeedViewModel{
+class FeedService {
     
     var loadFeed: ((([FeedItem]) -> Void) -> Void)?
     
