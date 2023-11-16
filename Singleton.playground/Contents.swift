@@ -11,13 +11,26 @@
 
 import UIKit
 
-class ApiClient {
+struct LoggedInUser {}
+
+final class ApiClient {
     static let instance  = ApiClient()
     
     static func getInstance() -> ApiClient {
         return instance
     }
     private init() {}
+    
+    func login(completion: (LoggedInUser) -> Void) { }
 }
 
 let client = ApiClient.instance
+
+
+class LoginViewController: UIViewController {
+    func didTapLoginButton() {
+        ApiClient.instance.login() { user in
+            // show next screen
+        }
+    }
+}
