@@ -88,13 +88,13 @@ class LoginViewController: UIViewController {
 
 struct FeedItem {}
 
-class FeedViewController: UIViewController {
+// this doesnt need to be a viewController; it can be viewModel
+
+class FeedViewModel{
     
     var loadFeed: ((([FeedItem]) -> Void) -> Void)?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func load() {
         loadFeed? { loadedItems in
             // update UI
         }
