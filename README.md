@@ -43,3 +43,18 @@ And to do so - we need to introduce protocols or closures or any type of for the
 
  i.e when you have a concrete type dependency i.e the Login module directly reference the ApiClient, we depend on ApiClient, we need to know how to locate the instance(ApiClient.shared) then now we invoke the function that we want. But all we want is a function.
  why dont we just depend on a function or protocol that implements the function.
+
+// here we have specialization - what do i need, as a Login Module, as a Feed Module, as a Follower Module - I dont care about anything else.
+
+## Solution - 5
+<img src="https://github.com/mbayi-ios/EssentialFeed-Singleton/assets/91916741/e7db08f3-fee7-4d9f-b45e-1864d87372eb" width="75%" />
+
+// NOTE: 4
+// We can do a little bit deeper in our implementation
+// - you have your generic ApiClient
+// - you have your modules with only what they need
+// - then implement the adapters
+// - this is completely modular i.e you can use the ApiClient Module in other applications, you can use Login Module in other applications, you can use the Followers Module in other context, you can use Feed Module in other context as well.
+// - You can just compose all those modules together and when you are testing you compose them with mocks or with stubs
+
+This has the final code
