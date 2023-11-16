@@ -47,7 +47,7 @@ And to do so - we need to introduce protocols or closures or any type of for the
 // here we have specialization - what do i need, as a Login Module, as a Feed Module, as a Follower Module - I dont care about anything else.
 
 ## Solution - 5
-<img src="https://github.com/mbayi-ios/EssentialFeed-Singleton/assets/91916741/e7db08f3-fee7-4d9f-b45e-1864d87372eb" width="75%" />
+<img src="https://github.com/mbayi-ios/EssentialFeed-Singleton/assets/91916741/e7db08f3-fee7-4d9f-b45e-1864d87372eb" width="100%" />
 
 // NOTE: 4
 // We can do a little bit deeper in our implementation
