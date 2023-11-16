@@ -12,11 +12,13 @@
 import UIKit
 
 struct LoggedInUser {}
+struct FeedItems {}
 
 class ApiClient {
     static let shared = ApiClient()
 
     func login(completion: (LoggedInUser) -> Void) { }
+    func loadFeed(completion: ([FeedItems]) -> Void) { }
 }
 
 // this allow you to test
@@ -31,7 +33,21 @@ class LoginViewController: UIViewController {
     
     func didTapLoginButton() {
         api.login() { user in
-            // show next screen
+            // show feed screen
+        }
+    }
+}
+
+
+class FeedViewController: UIViewController {
+    
+    var api = ApiClient.shared
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        api.loadFeed { loadedItems in
+            // update UI
         }
     }
 }
