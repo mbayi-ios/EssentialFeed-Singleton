@@ -17,19 +17,23 @@
 
 import UIKit
 
-struct LoggedInUser {}
-struct FeedItems {}
+// API Module
 
 class ApiClient {
     static let shared = ApiClient()
-
-    func login(completion: (LoggedInUser) -> Void) { }
-    func loadFeed(completion: ([FeedItems]) -> Void) { }
+    
+    // have generic function
+    func execute(_ : URLRequest, completion: (Data) -> Void) {}
 }
 
-// this allow you to test
-class MockApiClient: ApiClient {
-    
+// Login Module
+
+struct LoggedInUser {}
+
+extension ApiClient {
+    func login(completion: (LoggedInUser) -> Void) {
+        //this will call the execute function(the generic method)
+    }
 }
 
 class LoginViewController: UIViewController {
@@ -44,6 +48,15 @@ class LoginViewController: UIViewController {
     }
 }
 
+// Feed Module
+
+struct FeedItems {}
+
+extension ApiClient {
+     func loadFeed(completion: ([FeedItems]) -> Void) {
+         //this will call the execute function(the generic method)
+     }
+}
 
 class FeedViewController: UIViewController {
     
