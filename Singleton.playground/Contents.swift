@@ -25,7 +25,41 @@
 // ApiClient is just a detail - what is important to the business is not ApiClient implementation and Api requests
 // Best method is to have contained logic in Modules and Details(ApiClient) depends on the features
 
+// NOTE: 3
+// And to do so - we need to introduce protocols or closures or any type of for the modules.
+// For example,
+// - Login Module - it needs a function or a type that implements a function that talk to an API
+// - Feed Module - will need a function to load the feed
+// - Followers Module - Will need a function to load the followers
+// thats all they need - it doesnt need to know where they come from
+
+// i.e when you have a concrete type dependency i.e the Login module directly reference the ApiClient, we depend on ApiClient, we need to know how to locate the instance(ApiClient.shared) then now we invoke the function that we want. But all we want is a function.
+// why dont we just depend on a function or protocol that implements the function.
+
+// here we have specialization - what do i need, as a Login Module, as a Feed Module, as a Follower Module - I dont care about anything else.
+
+// NOTE: 4
+// We can do a little bit deeper in our implementation
+// - you have your generic ApiClient
+// - you have your modules with only what they need
+// - then implement the adapters
+// - this is completely modular i.e you can use the ApiClient Module in other applications, you can use Login Module in other applications, you can use the Followers Module in other context, you can use Feed Module in other context as well.
+// - You can just compose all those modules together and when you are testing you compose them with mocks or with stubs
+
+
 import UIKit
+
+// Main Module
+
+extension ApiClient {
+    func login(completion: (LoggedInUser) -> Void) { }
+}
+
+extension ApiClient {
+     func loadFeed(completion: ([FeedItem]) -> Void) {
+         //this will call the execute function(the generic method)
+     }
+}
 
 // API Module
 
@@ -40,19 +74,11 @@ class ApiClient {
 
 struct LoggedInUser {}
 
-extension ApiClient {
-    func login(completion: (LoggedInUser) -> Void) {
-        //this will call the execute function(the generic method)
-    }
-}
-
 class LoginViewController: UIViewController {
-    
-    // introducing property injection
-    var api = ApiClient.shared
+    var login: (((LoggedInUser) -> Void) -> Void)?
     
     func didTapLoginButton() {
-        api.login() { user in
+        login?{ user in
             // show feed screen
         }
     }
@@ -60,22 +86,16 @@ class LoginViewController: UIViewController {
 
 // Feed Module
 
-struct FeedItems {}
-
-extension ApiClient {
-     func loadFeed(completion: ([FeedItems]) -> Void) {
-         //this will call the execute function(the generic method)
-     }
-}
+struct FeedItem {}
 
 class FeedViewController: UIViewController {
     
-    var api = ApiClient.shared
+    var loadFeed: ((([FeedItem]) -> Void) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        api.loadFeed { loadedItems in
+        loadFeed? { loadedItems in
             // update UI
         }
     }
