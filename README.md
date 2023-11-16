@@ -19,7 +19,7 @@ NOTE: Care about Modular design - breaking this code into something manageable/r
 
 
 ## Solution - 3
-<img src="https://github.com/mbayi-ios/EssentialFeed-Singleton/assets/91916741/0420da06-36ce-46c0-b783-110d5d65b792" width="" />
+<img src="https://github.com/mbayi-ios/EssentialFeed-Singleton/assets/91916741/0420da06-36ce-46c0-b783-110d5d65b792" width="75%" />
 
 NOTE:  - We are not yet safe from change. The ApiClient is still shared in all the modules. You might break the client when you add new method.
 
