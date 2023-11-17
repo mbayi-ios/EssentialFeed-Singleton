@@ -1,5 +1,5 @@
 # EssentialFeed-Singleton
-## Solution  - 1 
+## Solution / Problem - 1 
 <img src="https://github.com/mbayi-ios/EssentialFeed-Singleton/assets/91916741/18a81020-238b-45e0-8299-e8b38813202a" width="75%" />
 
 - Login doesnt care about loadFeed(), loadFollowers()
